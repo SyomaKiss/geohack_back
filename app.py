@@ -21,6 +21,13 @@ def get_poly():
         'geometries': [poly]
     })
 
+@app.route('/api/get_poly')
+def get_poly2():
+    poly = read_poly(df)
+    return jsonify({
+        'geometries': [poly]
+    })
+
 
 @app.route('/')
 def index():
