@@ -1,0 +1,4 @@
+flask
+shapely
+geopandas
+geojsonio
