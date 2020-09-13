@@ -2,7 +2,7 @@
 
 from flask import Flask, request, jsonify
 import geopandas as gpd
-
+import json
 
 app = Flask(__name__)
 
@@ -12,7 +12,7 @@ df = gpd.read_file(path)
 def read_poly(df, idx=2049):
     row = df[df.ORIG_FID == idx]
     poly = row.geometry
-    return poly.to_json()
+    return json.loads(poly.to_json())
 
 
 # @app.route('/get_poly')

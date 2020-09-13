@@ -2,3 +2,5 @@ flask
 shapely
 geopandas
 geojsonio
+matplotlib
+descartes
