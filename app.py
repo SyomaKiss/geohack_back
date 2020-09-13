@@ -6,10 +6,10 @@ import geopandas as gpd
 
 app = Flask(__name__)
 
-df = gpd.read_file('data/Поля_Полигональные2.shp')
-
-def read_poly(df):
-    row = df[df.ORIG_FID == 2049].copy()
+path = 'data/perm_AOI/perm_AOI.shp'
+df = gpd.read_file(path)
+def read_poly(df, idx=2049):
+    row = df[df.ORIG_FID == idx].copy()
     poly = row.geometry
     return poly.to_json()
 
