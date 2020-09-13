@@ -14,6 +14,8 @@ python -m flask run
 
 #### Фронтенд
 ``` bash
+cd FRONT/geoadmin
+
 # install dependencies
 npm install
 
