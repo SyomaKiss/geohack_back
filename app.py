@@ -6,15 +6,21 @@ import json
 
 app = Flask(__name__)
 
-path = 'data/perm_AOI/perm_AOI.shp'
-df_all = gpd.read_file(path)
-path = 'data/changes/changes.shp'
-df_target = gpd.read_file(path)
+df_target = gpd.read_file('XY4326/tmp_target/tmp_target.shp')
+
+df_all = gpd.read_file('XY4326/tmp2/tmp2.shp')
+df_all['inter_all'] = df_all.inter_all.apply(lambda x: eval(x) if x.endswith(']') else [])
 
 def read_poly(df, idx=2049):
     row = df[df.ORIG_FID == idx]
     poly = row.geometry
     return json.loads(poly.to_json())
+
+def get_near(df, idx=[1,3,4,5]):
+    row = df.loc[idx]
+    poly = row.geometry
+    return json.loads(poly.to_json())
+
 
 
 def sample(df, idxs=[1, 2, 3, 4, 5, 6, 7, 8]):
@@ -28,7 +34,7 @@ def sample(df, idxs=[1, 2, 3, 4, 5, 6, 7, 8]):
             'area': area,
             'length': length,
             'map_fields': read_poly(df, idx),
-            'map_ground_truth': read_poly(df, idx),
+            'map_ground_truth': get_near(df_target, tmp.iloc[0].inter_all),
             'status': 'new',
             'verified': False,
         })
@@ -44,7 +50,7 @@ def get_poly2():
 
 @app.route('/api/get_all_fields')
 def get_poly3():
-    return sample(df_all, [1,2,3,4,5,6,7,8,9])
+    return sample(df_all, [ 455,  460,  471,  473,  486,  487,  490,  494,  496,  499,  504, 511,  523,  528,  529,  535,  537,  538,  543,  558,  559,  560])
 
 
 
