@@ -29,8 +29,8 @@ def sample(df, idxs=[1, 2, 3, 4, 5, 6, 7, 8]):
             'length': length,
             'map_fields': read_poly(df, idx),
             'map_ground_truth': read_poly(df, idx),
-            'status': 'ok' if idx == 1 else 'danger',
-
+            'status': 'new',
+            'verified': False,
         })
     return {'data': ret}
 
@@ -44,7 +44,7 @@ def get_poly2():
 
 @app.route('/api/get_all_fields')
 def get_poly3():
-    return sample(df_all, [1,2,3])
+    return sample(df_all, [1,2,3,4,5,6,7,8,9])
 
 
 
