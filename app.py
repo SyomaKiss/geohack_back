@@ -28,9 +28,9 @@ def get_poly2():
 def get_poly3():
     # idx = int(request.args.get('idx'))
     # print(idx)
-    return {'map_fields' : read_poly(df_all, idx=1106),
+    return [{'map_fields' : read_poly(df_all, idx=1106),
             'map_ground_truth': read_poly(df_all, idx=1414),
-           }
+           },]
 
 
 @app.route('/')
