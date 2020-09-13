@@ -14,22 +14,12 @@ def read_poly(df, idx=2049):
     poly = row.geometry
     return json.loads(poly.to_json())
 
-
-# @app.route('/get_poly')
-# def get_poly():
-#     poly = read_poly(df)
-#     return jsonify({
-#         'geometries': [poly]
-#     })
-
 @app.route('/api/get_poly')
 def get_poly2():
     idx = int(request.args.get('idx'))
     print(idx)
     poly = read_poly(df, idx)
-    return jsonify({
-        'geometries': [poly]
-    })
+    return poly
 
 
 @app.route('/')
